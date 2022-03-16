@@ -1,13 +1,12 @@
 package com.example.file_upload.controller;
 
+import com.example.file_upload.beans.EnterezaBean;
 import com.example.file_upload.service.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 
 @RestController
 @RequestMapping("/entereza-pdf")
@@ -16,24 +15,13 @@ public class UploadFileController {
     @Autowired
     private UploadFileService uploadFileService;
 
-//    @GetMapping("/")
-//    public String index(){
-//        return "upluadFileView";
-//    }
-
-    @PostMapping("/upload")
-    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
-        if (file.isEmpty()) {
-            return new ResponseEntity<Object>("Seleccionar un archivo", HttpStatus.OK);
-        }
-
-        try {
-            uploadFileService.saveFile(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return new ResponseEntity<Object>("Archivo subido correctamente", HttpStatus.OK);
+    @RequestMapping(path = "/upload", method = RequestMethod.POST)
+    public ResponseEntity<EnterezaBean> uploadFile(@RequestParam("codigoEmpresa")String codigoEmpresa, @RequestParam("file") MultipartFile file) {
+        return ResponseEntity.ok(uploadFileService.saveFile(codigoEmpresa,file));
     }
+
+    //@RequestMapping(path = "/download", method = RequestMethod.GET)
+
+
 }
 

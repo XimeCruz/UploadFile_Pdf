@@ -10,7 +10,7 @@ public class PdfCollection {
 
     @Id
     private String id;
-    //private String codigo_empresa;
+    private String codigo_empresa;
     private byte[] pdf;
 
     public String getId() {
@@ -21,21 +21,13 @@ public class PdfCollection {
         this.id = id;
     }
 
-//    public String getCodigo_empresa() {
-//        return codigo_empresa;
-//    }
-//
-//    public void setCodigo_empresa(String codigo_empresa) {
-//        this.codigo_empresa = codigo_empresa;
-//    }
+    public String getCodigo_empresa() {
+        return codigo_empresa;
+    }
 
-//    public Binary getPdf() {
-//        return pdf;
-//    }
-//
-//    public void setPdf(Binary pdf) {
-//        this.pdf = pdf;
-//    }
+    public void setCodigo_empresa(String codigo_empresa) {
+        this.codigo_empresa = codigo_empresa;
+    }
 
 
     public byte[] getPdf() {
